@@ -1,0 +1,45 @@
+@use "sass:color";
+
+$color-primary: red;
+$color-secondary: blue;
+$color-tertiary: green;
+$color-text: white;
+
+.box {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-text;
+  margin-bottom: 4px;
+  padding: 28px 4px;
+  border-radius: 4px;
+  width: 80px;
+}
+
+@mixin palette($color, $container) {
+  .#{$container} {
+    .base-color {
+      background-color: $color;
+      width: 100px;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    @for $i from 1 through 4 {
+      .darken-#{$i} {
+        background-color: color.adjust($color: $color, $blackness: $i * 10%);
+        color: color.adjust($color: color.complement($color), $lightness: $i * 10%);
+      }
+      .lighten-#{$i} {
+        background-color: color.adjust($color: $color, $lightness: $i * 10%);
+        color: color.adjust($color: color.complement($color), $blackness: $i * 10%);
+      }
+    }
+  }
+}
+
+@include palette($color-primary, container-1);
+@include palette($color-secondary, container-2);
+@include palette($color-tertiary, container-3);
