@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Great+Vibes&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
+
+@import "theme-a";
+// @import "theme-b" ;
+
+body {
+    margin: 24px;
+}
+
+.box {
+    padding: 20px;
+    width: 80px;
+    aspect-ratio: 4/2;
+    border: 1px solid grey;
+    border-radius: $border-radius;
+    font-family: "Comic Neue", cursive;
+
+    &--base {
+        background-color: $color-base;
+    }
+
+    &--important {
+        background-color: $color-accent;
+    }
+
+    &--warning {
+        background-color: $color-warning;
+    }
+
+    &__shadow {
+        box-shadow: $box-shadow;
+    }
+}
+
+.font {
+    &--principal {
+        font-family: $font-primary;
+    }
+    &--secondary {
+        font-family: $font-secondary;
+    }
+}
