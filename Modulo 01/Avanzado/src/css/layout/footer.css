@@ -1,0 +1,7 @@
+footer{
+  padding: var(--space-md);
+  text-align: end;
+}
+footer  span {
+  font-size: var(--fs-sm);
+} 
