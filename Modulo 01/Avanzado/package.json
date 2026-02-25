@@ -1,0 +1,21 @@
+{
+  "name": "avanzado",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/postcss-preset-env": "^7.7.0",
+    "postcss-import": "^16.1.1",
+    "postcss-mixins": "^12.1.2",
+    "postcss-nested": "^7.0.2",
+    "postcss-preset-env": "^10.6.0",
+    "postcss-simple-vars": "^7.0.1",
+    "sass": "^1.94.2",
+    "vite": "^7.2.4"
+  }
+}
