@@ -1,75 +1,61 @@
-
-console.log("************** DELIVERABLE 01 *********************");
-console.log("************** 1. Array operations ****************");
+console.log("************** Entregable 1. Array operations ****************");
+console.log("");
 
 // Array de pruebas único para todas las funciones
-const testArray = [1, 'b', 3];
-
-
+const testArray = [1, "b", 3];
 
 /**
- * Devuelve el primer elemento de un array.
- * @template T
- * @param {T[]} array - Array de entrada.
- * @returns {T | undefined} El primer elemento del array o undefined si está vacío.
+ * Head
+ *
+ * Implementa una función head (inmutable), tal que, dado un array como entrada extraiga y devuelva
+ * su primer elemento. Utiliza destructuring.
  */
 const head = <T>(array: T[]): T | undefined => {
   const [first] = array;
   return first;
 };
 
-console.log('--- head(array) ---');
-console.log('Entrada:', testArray);
-console.log('Salida:', head(testArray));
-console.log('');
-
-
-
+console.log("--- head(array) ---");
+console.log("Entrada:", testArray);
+console.log("Salida:", head(testArray));
+console.log("");
 
 /**
- * Devuelve todos los elementos de un array excepto el primero.
- * @template T
- * @param {T[]} array - Array de entrada.
- * @returns {T[] | undefined} Un nuevo array sin el primer elemento, o undefined si está vacío.
+ * Tail
+ *
+ * Implementa una función tail (inmutable), tal que, dado un array como entrada
+ * devuelva todos menos el primer elemento. Utiliza rest operator.
  */
 const tail = <T>(array: T[]): T[] | undefined => {
   const [, ...rest] = array;
   return rest;
 };
 
-console.log('--- tail(array) ---');
-console.log('Entrada:', testArray);
-console.log('Salida:', tail(testArray));
-console.log('');
-
-
-
+console.log("--- tail(array) ---");
+console.log("Entrada:", testArray);
+console.log("Salida:", tail(testArray));
+console.log("");
 
 /**
- * Devuelve todos los elementos de un array excepto el último.
- * @template T
- * @param {T[]} array - Array de entrada.
- * @returns {T[] | undefined} Un nuevo array sin el último elemento, o undefined si está vacío.
+ * Init
+ * Implementa una función init (inmutable), tal que, dado un array como entrada
+ * devuelva todos los elementos menos el último. Utiliza los métodos que ofrece Array.prototype.
  */
 const init = <T>(array: T[]): T[] | undefined => array.slice(0, -1);
 
-console.log('--- init(array) ---');
-console.log('Entrada:', testArray);
-console.log('Salida:', init(testArray));
-console.log('');
-
-
-
+console.log("--- init(array) ---");
+console.log("Entrada:", testArray);
+console.log("Salida:", init(testArray));
+console.log("");
 
 /**
- * Devuelve el último elemento de un array.
- * @template T
- * @param {T[]} array - Array de entrada.
- * @returns {T | undefined} El último elemento del array o undefined si está vacío.
+ * Last
+ *
+ * Implementa una función last (inmutable), tal que, dado un array como entrada
+ * devuelva el último elemento.
  */
 const last = <T>(array: T[]): T | undefined => array.at(-1);
 
-console.log('--- last(array) ---');
-console.log('Entrada:', testArray);
-console.log('Salida:', last(testArray));
-console.log('');
+console.log("--- last(array) ---");
+console.log("Entrada:", testArray);
+console.log("Salida:", last(testArray));
