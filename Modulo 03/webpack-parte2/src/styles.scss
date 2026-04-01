@@ -1,0 +1,15 @@
+$lemon-color: rgb(217, 217, 71);
+
+.lemon-background {
+  background-color: $lemon-color;
+  font-style: italic;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 200px;
+}
