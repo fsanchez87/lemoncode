@@ -8,7 +8,7 @@ organizacíon.
 
 ## Puntos opcionales:
 - [x] Añade paginación.
-- [ ] Añade Material UI.
+- [x] Añade Material UI.
 
 ## Añadir otra página y:
 - [ ] Tirar de la API rest de Rick y Morty para mostrar la lista de personajes de la serie.
