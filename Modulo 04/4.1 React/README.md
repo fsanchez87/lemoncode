@@ -7,7 +7,7 @@ organizacíon.
 - [x] Que al volver de la página de detalle se muestre la organización que se había tecleado en el filtro (por ejemplo si el usuario tecleó microsoft se debe de ver Microsoft).
 
 ## Puntos opcionales:
-- [ ] Añade paginación.
+- [x] Añade paginación.
 - [ ] Añade Material UI.
 
 ## Añadir otra página y:

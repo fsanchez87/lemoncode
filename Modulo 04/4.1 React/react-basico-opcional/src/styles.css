@@ -15,3 +15,23 @@
 .list-user-list-container > img {
   width: 80px;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pagination > span {
+  min-width: 110px;
+  text-align: center;
+}
+
+.pagination label {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
