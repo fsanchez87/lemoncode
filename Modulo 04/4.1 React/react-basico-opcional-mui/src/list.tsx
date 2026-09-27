@@ -1,5 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Link from "@mui/material/Link";
+import MenuItem from "@mui/material/MenuItem";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { Link as RouterLink } from "react-router-dom";
 import { useDebounce } from "./useDebounce";
 import { useFilterContext } from "./filter.context";
 import {
@@ -95,90 +111,141 @@ export const ListPage: React.FC = () => {
 
   return (
     <>
-      <h2>Hello from List page</h2>
-      <label>
-        Search members:
-        <input
-          type="text"
-          value={filter}
-          onChange={(e) => {
-            setFilter(e.target.value.toLowerCase());
-            // Un filtro nuevo siempre empieza por la primera página.
-            setPage(1);
-          }}
-        />
-      </label>
-      <hr />
+      <Typography variant="h5" component="h2" gutterBottom>
+        Hello from List page
+      </Typography>
+      <TextField
+        label="Search members"
+        value={filter}
+        onChange={(e) => {
+          setFilter(e.target.value.toLowerCase());
+          // Un filtro nuevo siempre empieza por la primera página.
+          setPage(1);
+        }}
+        fullWidth
+        sx={{ maxWidth: 400 }}
+      />
+      <Divider sx={{ my: 3 }} />
       {members.length > 0 ? (
         <>
-          <div className="list-user-list-container">
-            <span className="list-header">Avatar</span>
-            <span className="list-header">Id</span>
-            <span className="list-header">Name</span>
-            {members.map((member) => (
-              <React.Fragment key={member.id}>
-                <img src={member.avatar_url} />
-                <span>{member.id}</span>
-                <Link to={`/detail/${member.login}`}>{member.login}</Link>
-              </React.Fragment>
-            ))}
-          </div>
-          <div className="pagination">
-            {/* Si GitHub no entrega el enlace, ya estamos en la primera página. */}
-            <button
-              disabled={loading || !links.first}
-              onClick={() => goTo(links.first)}
+          <TableContainer
+            component={Paper}
+            variant="outlined"
+            sx={{ maxHeight: { xs: "40vh", sm: "50vh" } }}
+          >
+            <Table
+              size="small"
+              stickyHeader
+              aria-label="Miembros de la organización"
             >
-              « First
-            </button>
-            {/* `prev` falta en la primera página. */}
-            <button
-              disabled={loading || !links.prev}
-              onClick={() => goTo(links.prev)}
-            >
-              ‹ Prev
-            </button>
-            <span>
-              Page {page}
-              {lastPage ? ` of ${lastPage}` : ""}
-            </span>
-            {/* `next` falta en la última página. */}
-            <button
-              disabled={loading || !links.next}
-              onClick={() => goTo(links.next)}
-            >
-              Next ›
-            </button>
-            {/* `last` permite saltar directamente al final cuando está disponible. */}
-            <button
-              disabled={loading || !links.last}
-              onClick={() => goTo(links.last)}
-            >
-              Last »
-            </button>
-            <label>
-              Per page:
-              <select
-                value={perPage}
-                onChange={(e) => {
-                  setPerPage(Number(e.target.value));
-                  // Al cambiar el tamaño de página se reinicia para evitar páginas inexistentes.
-                  setPage(1);
-                }}
-              >
-                {PER_PAGE_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Avatar</TableCell>
+                  <TableCell>Id</TableCell>
+                  <TableCell>Name</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {members.map((member) => (
+                  <TableRow key={member.id}>
+                    <TableCell>
+                      <Avatar
+                        src={member.avatar_url}
+                        alt={member.login}
+                        sx={{ width: 48, height: 48 }}
+                      />
+                    </TableCell>
+                    <TableCell>{member.id}</TableCell>
+                    <TableCell>
+                      <Link component={RouterLink} to={`/detail/${member.login}`}>
+                        {member.login}
+                      </Link>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </select>
-            </label>
-          </div>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Stack direction={{ xs: "column", sm: "row" }} sx={{ gap: 1, mt: 2 }}>
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}
+            >
+              {/* Si GitHub no entrega el enlace, ya estamos en la primera página. */}
+              <Button
+                variant="outlined"
+                size="small"
+                disabled={loading || !links.first}
+                onClick={() => goTo(links.first)}
+              >
+                « First
+              </Button>
+              {/* `prev` falta en la primera página. */}
+              <Button
+                variant="outlined"
+                size="small"
+                disabled={loading || !links.prev}
+                onClick={() => goTo(links.prev)}
+              >
+                ‹ Prev
+              </Button>
+              <Typography sx={{ minWidth: 110, textAlign: "center" }}>
+                Page {page}
+                {lastPage ? ` of ${lastPage}` : ""}
+              </Typography>
+              {/* `next` falta en la última página. */}
+              <Button
+                variant="outlined"
+                size="small"
+                disabled={loading || !links.next}
+                onClick={() => goTo(links.next)}
+              >
+                Next ›
+              </Button>
+              {/* `last` permite saltar directamente al final cuando está disponible. */}
+              <Button
+                variant="outlined"
+                size="small"
+                disabled={loading || !links.last}
+                onClick={() => goTo(links.last)}
+              >
+                Last »
+              </Button>
+            </Stack>
+            <TextField
+              select
+              size="small"
+              label="Per page"
+              value={perPage}
+              onChange={(e) => {
+                setPerPage(Number(e.target.value));
+                // Al cambiar el tamaño de página se reinicia para evitar páginas inexistentes.
+                setPage(1);
+              }}
+              sx={{
+                ml: { sm: "auto" },
+                minWidth: 120,
+                width: { xs: "100%", sm: 150 },
+              }}
+            >
+              {PER_PAGE_OPTIONS.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Stack>
         </>
       ) : (
-        !loading && notFound && <p>No se encuentra la organización</p>
+        !loading && notFound && (
+          <Alert severity="warning">No se encuentra la organización</Alert>
+        )
       )}
-      <Link to="/detail">Navigate to detail page</Link>
+      <Stack direction="row" sx={{ mt: 3 }}>
+        <Button component={RouterLink} to="/detail" nativeButton={false}>
+          Navigate to detail page
+        </Button>
+      </Stack>
     </>
   );
 };

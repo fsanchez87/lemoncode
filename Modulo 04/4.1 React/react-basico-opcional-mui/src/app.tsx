@@ -9,17 +9,20 @@ import { LoginPage } from "./login";
 import { ListPage } from "./list";
 import { DetailPage } from "./detail";
 import { FilterProvider } from "./filter.context";
+import { Layout } from "./layout";
 
 export const App = () => {
   return (
     <Router>
       <FilterProvider>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/list" element={<ListPage />} />
-          <Route path="/detail/:id" element={<DetailPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/list" element={<ListPage />} />
+            <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Layout>
       </FilterProvider>
     </Router>
   );
