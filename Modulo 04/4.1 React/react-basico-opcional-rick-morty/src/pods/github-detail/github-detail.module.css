@@ -1,0 +1,8 @@
+.card {
+  max-width: 480px;
+}
+
+.user-id {
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 16px;
+}

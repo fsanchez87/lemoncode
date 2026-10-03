@@ -6,46 +6,44 @@ import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import { Login } from "./login.vm";
+import css from "./login.module.css";
 
-export const LoginPage: React.FC = () => {
-  const navigate = useNavigate();
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+interface Props {
+  login: Login;
+  onChangeField: (field: keyof Login, value: string) => void;
+  onSubmit: (login: Login) => void;
+}
 
-  const handleNavigation = (e: React.FormEvent<HTMLFormElement>) => {
+export const LoginComponent: React.FC<Props> = (props) => {
+  const { login, onChangeField, onSubmit } = props;
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (username === "admin" && password === "test") {
-      navigate("/list");
-    } else {
-      alert("User / password not valid, psst... admin / test");
-    }
+    onSubmit(login);
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
-      <Card sx={{ width: "100%", maxWidth: 400 }}>
+    <Box className={css.page}>
+      <Card className={css.card}>
         <CardContent>
-          <Stack component="form" onSubmit={handleNavigation} spacing={2}>
+          <Stack component="form" onSubmit={handleSubmit} spacing={2}>
             <Typography variant="h5" component="h2" gutterBottom>
               Hello from login page
             </Typography>
-
             <TextField
               label="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={login.username}
+              onChange={(e) => onChangeField("username", e.target.value)}
               fullWidth
             />
             <TextField
               label="Password"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={login.password}
+              onChange={(e) => onChangeField("password", e.target.value)}
               fullWidth
             />
-
             <Button type="submit" variant="contained" size="large" fullWidth>
               Login
             </Button>

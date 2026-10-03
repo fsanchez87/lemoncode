@@ -1,10 +1,4 @@
-export interface PageLinks {
-  // Cada propiedad conserva la URL completa indicada por GitHub para esa dirección.
-  first?: string;
-  prev?: string;
-  next?: string;
-  last?: string;
-}
+import { PageLinksApi } from "./github-list.api-model";
 
 /**
  * Convierte la cabecera `Link` de GitHub en las URLs de primera, anterior,
@@ -13,8 +7,8 @@ export interface PageLinks {
  * Ejemplo de cabecera:
  *   <https://api.github.com/...?page=2>; rel="next", <https://...?page=3>; rel="last"
  */
-export const parseLinkHeader = (header: string | null): PageLinks => {
-  const links: PageLinks = {};
+export const parseLinkHeader = (header: string | null): PageLinksApi => {
+  const links: PageLinksApi = {};
 
   if (!header) {
     // Una única página no suele incluir cabecera `Link`.
@@ -49,6 +43,6 @@ export const getPageFromUrl = (url?: string): number | undefined => {
 
   const page = new URL(url).searchParams.get("page");
 
-  // Se convierte de texto a número para actualizar el estado `page` de React.
+  // Se convierte de texto a número para poder calcular la última página.
   return page ? Number(page) : undefined;
 };

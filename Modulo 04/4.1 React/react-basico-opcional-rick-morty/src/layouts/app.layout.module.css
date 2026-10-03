@@ -1,0 +1,17 @@
+.title {
+  flex-grow: 1;
+}
+
+.nav {
+  gap: 8px;
+}
+
+.user-name {
+  margin-left: 16px;
+  opacity: 0.8;
+}
+
+.content {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}

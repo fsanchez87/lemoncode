@@ -7,12 +7,15 @@ interface RickMortyFilterContextProps {
 
 /**
  * Contexto propio de la sección de Rick & Morty. Se mantiene separado del
- * `FilterContext` de GitHub para no compartir estado entre ambas secciones.
+ * filtro de GitHub para no compartir estado entre ambas secciones.
  */
 export const RickMortyFilterContext =
   React.createContext<RickMortyFilterContextProps>({
     filter: "",
-    setFilter: (value) => {},
+    setFilter: () =>
+      console.warn(
+        "Falta el provider de filtro de Rick & Morty en la parte superior de la app"
+      ),
   });
 
 export const RickMortyFilterProvider: React.FC<React.PropsWithChildren> = ({
@@ -21,20 +24,15 @@ export const RickMortyFilterProvider: React.FC<React.PropsWithChildren> = ({
   // A diferencia de GitHub, aquí empezamos sin filtro para ver todos los personajes.
   const [filter, setFilter] = React.useState<string>("");
 
+  // Se memoriza el valor para no recrear el objeto en cada render.
+  const value = React.useMemo(() => ({ filter, setFilter }), [filter]);
+
   return (
-    <RickMortyFilterContext value={{ filter, setFilter }}>
+    <RickMortyFilterContext.Provider value={value}>
       {children}
-    </RickMortyFilterContext>
+    </RickMortyFilterContext.Provider>
   );
 };
 
-export const useRickMortyFilterContext = () => {
-  const context = React.useContext(RickMortyFilterContext);
-
-  if (!context) {
-    throw new Error(
-      "useRickMortyFilterContext must be used within a RickMortyFilterProvider"
-    );
-  }
-  return context;
-};
+export const useRickMortyFilterContext = () =>
+  React.useContext(RickMortyFilterContext);

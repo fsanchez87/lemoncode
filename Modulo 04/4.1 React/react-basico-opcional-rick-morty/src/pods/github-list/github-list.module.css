@@ -1,0 +1,41 @@
+.search-field {
+  max-width: 400px;
+}
+
+.divider {
+  margin: 24px 0;
+}
+
+.table-container {
+  max-height: 40vh;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+}
+
+.pagination-row {
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.per-page-field {
+  min-width: 120px;
+  width: 100%;
+}
+
+.actions {
+  margin-top: 24px;
+}
+
+@media (min-width: 600px) {
+  .table-container {
+    max-height: 50vh;
+  }
+
+  .per-page-field {
+    margin-left: auto;
+    width: 150px;
+  }
+}
