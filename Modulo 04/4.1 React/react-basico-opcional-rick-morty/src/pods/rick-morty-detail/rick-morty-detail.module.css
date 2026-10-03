@@ -1,0 +1,16 @@
+.card {
+  max-width: 480px;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+}
+
+.meta {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.actions {
+  margin-top: 24px;
+}

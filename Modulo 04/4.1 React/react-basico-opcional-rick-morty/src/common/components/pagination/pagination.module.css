@@ -1,0 +1,10 @@
+.container {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.page-info {
+  min-width: 110px;
+  text-align: center;
+}

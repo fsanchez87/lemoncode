@@ -1,0 +1,26 @@
+.search-field {
+  max-width: 400px;
+}
+
+.divider {
+  margin: 24px 0;
+}
+
+.table-container {
+  max-height: 40vh;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+}
+
+.pagination-row {
+  margin-top: 16px;
+}
+
+@media (min-width: 600px) {
+  .table-container {
+    max-height: 50vh;
+  }
+}
